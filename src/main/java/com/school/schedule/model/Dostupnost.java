@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 public class Dostupnost {
@@ -17,10 +19,8 @@ public class Dostupnost {
     private Profesor profesor;
 
     @Enumerated(EnumType.STRING)
-    private DanUNedelji danUNedelji;
+    private List<DanUNedelji> daniUNedelji; // Npr. "Dani u nedelji kada profesor ne radi"
 
-    private String vremeOd; // Npr. "08:00"
-    private String vremeDo; // Npr. "12:00"
-
-    private Boolean obavezanPrviCetiriCasovi; // Da li mora imati prva 4 časa svaki dan
+    private Long casOd; // Npr. "1"
+    private Long casDo; // Npr. "5"
 }

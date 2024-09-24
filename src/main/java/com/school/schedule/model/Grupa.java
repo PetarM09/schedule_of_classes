@@ -25,6 +25,4 @@ public class Grupa {
     @ManyToOne
     @JoinColumn(name = "predmet_id")
     private Predmet predmet;
-
-    private Integer brojCasova; // Koliko časova grupa ima nedeljno
 }

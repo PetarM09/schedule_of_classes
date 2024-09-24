@@ -15,8 +15,5 @@ public class Smer {
     private Long id;
 
     private String naziv; // Npr. "Prirodno-matematički", "Društveno-jezički", itd.
-
-    @OneToMany(mappedBy = "smer", cascade = CascadeType.ALL)
-    private List<Razred> razredi;
 }
 

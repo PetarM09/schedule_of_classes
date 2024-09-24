@@ -15,7 +15,7 @@ public class Termin {
     @Enumerated(EnumType.STRING)
     private DanUNedelji danUNedelji; // Ponedeljak, Utorak, itd.
 
-    private String vreme; // Npr. "08:00-09:00"
+    private Long redniBrCasa; // Npr. "1,2,3,4..."
 
     @ManyToOne
     @JoinColumn(name = "predmet_id")

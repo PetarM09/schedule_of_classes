@@ -16,10 +16,6 @@ public class Razred {
 
     private Integer nivo; // 1, 2, 3, 4
 
-    @ManyToOne
-    @JoinColumn(name = "smer_id")
-    private Smer smer;
-
     @OneToMany(mappedBy = "razred", cascade = CascadeType.ALL)
     private List<Odeljenje> odeljenja;
 
