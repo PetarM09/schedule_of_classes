@@ -18,7 +18,4 @@ public class Razred {
 
     @OneToMany(mappedBy = "razred", cascade = CascadeType.ALL)
     private List<Odeljenje> odeljenja;
-
-    @OneToMany(mappedBy = "razred", cascade = CascadeType.ALL)
-    private List<Predmet> predmeti;
 }

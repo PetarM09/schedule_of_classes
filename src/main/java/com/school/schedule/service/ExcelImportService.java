@@ -96,24 +96,35 @@ public class ExcelImportService {
         }
 
 
-
-        // Kreiraj i sačuvaj predmet
-        Predmet predmet = new Predmet();
-        predmet.setNaziv(predmetNaziv);
-        predmet.setBrojTeorijskihCasova(brojTeorijskihCasova);
-        predmet.setBrojVezbiCasova(brojVezbiCasova);
-        predmet.setSmer(smer);
-        predmet.setRazred(razred);
-        if(brojVezbiCasova == 0)
-            predmet.setTipVezbi(TipVezbi.CELO_ODELJENJE);
-        predmet = predmetService.save(predmet);
-
         // Kreiraj odeljenje sa pravilnim nazivom
         Odeljenje odeljenjeObj = new Odeljenje();
         odeljenjeObj.setRazred(razred);
         odeljenjeObj.setSmer(smer);
         odeljenjeObj.setNaziv(razredNum + "-" + smerIndex); // Postavi naziv odeljenja
         odeljenjeObj = odeljenjeService.save(odeljenjeObj); // Sačuvaj odeljenje
+
+
+        // Kreiraj i sačuvaj predmet
+        Predmet predmet = new Predmet();
+        predmet.setNaziv(predmetNaziv);
+        predmet.setBrojTeorijskihCasova(brojTeorijskihCasova);
+        predmet.setBrojVezbiCasova(brojVezbiCasova);
+        predmet.setOdeljenje(odeljenjeObj);
+        if(brojVezbiCasova == 0)
+            predmet.setTipVezbi(TipVezbi.CELO_ODELJENJE);
+        predmetService.save(predmet);
+
+        // Poveži predmet i profesora (popuni predmet_profesor tabelu)
+        if (!predmet.getProfesori().contains(profesor)) {
+            predmet.getProfesori().add(profesor); // Dodaj profesora predmetu
+        }
+        if (!profesor.getPredmeti().contains(predmet)) {
+            profesor.getPredmeti().add(predmet); // Dodaj predmet profesoru
+        }
+
+        // Sačuvaj promene
+        predmetService.save(predmet);
+        profesorService.save(profesor);
 
         // Veži profesora, predmet i odeljenje
         //Grupa grupa = new Grupa();

@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,7 @@ public class Profesor {
     private String prezime;
 
     @ManyToMany(mappedBy = "profesori")
-    private List<Predmet> predmeti;
+    private List<Predmet> predmeti = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
